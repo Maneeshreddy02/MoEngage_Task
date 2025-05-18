@@ -1,5 +1,5 @@
-# Use a base image with Java and webapp-runner
-FROM openjdk:17-jdk-slim as builder
+# Use a base image with Java JDK for building (from Eclipse Adoptium)
+FROM eclipse-temurin:17-jdk-jammy as builder
 
 # Set the working directory
 WORKDIR /app
@@ -12,9 +12,8 @@ COPY src ./src
 RUN apt-get update && apt-get install -y maven && \
     mvn clean package
 
-# Use a smaller base image for the final stage
-# Changed base image tag for better availability
-FROM openjdk:17-jre
+# Use a smaller base image with Java JRE for the final stage (from Eclipse Adoptium)
+FROM eclipse-temurin:17-jre-jammy
 
 # Set the working directory
 WORKDIR /app
