@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y maven && \
 
 # Use a smaller base image for the final stage
 # Changed base image tag for better availability
-FROM openjdk:17-jre # Changed this line
+FROM openjdk:17-jre
 
 # Set the working directory
 WORKDIR /app
