@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y maven && \
     mvn clean package
 
 # Use a smaller base image for the final stage
-# Changed this line (comment moved)
-FROM openjdk:17-jre-slim-buster
+# Changed base image tag for better availability
+FROM openjdk:17-jre # Changed this line
 
 # Set the working directory
 WORKDIR /app
