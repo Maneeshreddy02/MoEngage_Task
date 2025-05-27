@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Edit List - MoEngage Response Code Manager</title>
+    <title>Edit List - Response Code Manager</title>
     <style>
         body {
             font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
@@ -174,7 +174,7 @@
             <div class="nav-links">
                 <a href="list">Back to Lists</a>
                 <a href="search">Search Response Codes</a>
-                <a href="logout">Logout</a>
+                <a href="login">Logout</a>
             </div>
         </div>
 
@@ -202,24 +202,23 @@
         </div>
 
         <div class="response-codes">
-            <%
-                if (list != null && list.getResponseCodes() != null && !list.getResponseCodes().isEmpty()) {
-                    for (com.maneesh.model.ResponseCode code : list.getResponseCodes()) {
-            %>
-                <div class="response-code">
-                    <a href="remove-code?listId=<%= list.getListId() %>&code=<%= code.getResponseCode() %>" class="remove-code" onclick="return confirm('Remove this response code?')">&times;</a>
-                    <img src="<%= code.getImageUrl() %>" alt="HTTP <%= code.getResponseCode() %>">
-                    <h3><%= code.getResponseCode() %></h3>
-                </div>
-            <%
-                    }
-                } else {
-            %>
-                <span style="color:#bbb;font-size:0.95rem;">No codes in this list.</span>
-            <%
-                }
-            %>
-        </div>
+<%
+    if (list != null && list.getResponseCodes() != null && !list.getResponseCodes().isEmpty()) {
+        for (com.maneesh.model.ResponseCode code : list.getResponseCodes()) {
+%>
+    <div class="response-code">
+        <a href="remove-code?listId=<%= list.getListId() %>&code=<%= code.getResponseCode() %>" class="remove-code" onclick="return confirm('Remove this response code?')">&times;</a>
+        <img src="<%= code.getImageUrl() %>" alt="HTTP <%= code.getResponseCode() %>">
+        <h3><%= code.getResponseCode() %></h3>
+    </div>
+<%
+        }
+    } else {
+%>
+    <span style="color:#bbb;font-size:0.95rem;">No codes in this list.</span>
+<%
+    }
+%>        </div>
     </div>
 </body>
 </html> 

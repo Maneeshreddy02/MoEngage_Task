@@ -2,9 +2,13 @@ package com.maneesh.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
+import com.maneesh.Dao.ResponseCodeDAO;
 import com.maneesh.Dao.ResponseListDAO;
+import com.maneesh.daoimpl.ResponseCodeDAOImpl;
 import com.maneesh.daoimpl.ResponseListDAOImpl;
+import com.maneesh.model.ResponseCode;
 import com.maneesh.model.ResponseList;
 
 import jakarta.servlet.ServletException;
@@ -17,10 +21,12 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/edit-list")
 public class EditListServlet extends HttpServlet {
     private ResponseListDAO responseListDAO;
+    private ResponseCodeDAO responseCodeDAO;
 
     @Override
     public void init() throws ServletException {
         responseListDAO = new ResponseListDAOImpl();
+        responseCodeDAO = new ResponseCodeDAOImpl();
     }
 
     @Override
@@ -36,6 +42,8 @@ public class EditListServlet extends HttpServlet {
             try {
                 ResponseList list = responseListDAO.getListById(Integer.parseInt(listId));
                 if (list != null) {
+                	 List<ResponseCode> codes = responseCodeDAO.getResponseCodesByListId(list.getListId());
+                     list.setResponseCodes(codes);
                     request.setAttribute("list", list);
                     request.getRequestDispatcher("edit-list.jsp").forward(request, response);
                 } else {

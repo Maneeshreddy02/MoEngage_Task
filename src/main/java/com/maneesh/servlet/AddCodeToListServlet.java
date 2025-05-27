@@ -49,7 +49,7 @@ public class AddCodeToListServlet extends HttpServlet {
                     }
                 }
             } catch (SQLException e) {
-                // Optionally, set an error attribute here
+                
             }
         }
         // Redirect back to the edit-list page for this list
