@@ -1,5 +1,5 @@
 # Use official Tomcat base image
-FROM tomcat:10.1-jdk17
+ FROM tomcat:10.1-jdk22
 
 # Remove default webapps (optional, for cleanliness)
 RUN rm -rf /usr/local/tomcat/webapps/*
